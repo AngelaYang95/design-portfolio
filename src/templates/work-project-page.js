@@ -5,22 +5,16 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import Transition from '../components/Transition'
 
-export const AboutPageTemplate = ({ title, content, contentComponent}) => {
+export const WorkProjectTemplate = ({ title, content, contentComponent}) => {
   const PageContent = contentComponent || Content
 
   return (
     <section className="section section--gradient">
-      <div className="page-title">{title}</div>
       <div className="container">
         <div className="columns">
           <div className="column is-10 is-offset-1">
             <div className="section">
-              <Transition enter={['fade']}>
-                <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                  {title}
-                </h2>
-                <PageContent className="content" content={content} />
-              </Transition>
+              Project
             </div>
           </div>
         </div>
@@ -29,17 +23,17 @@ export const AboutPageTemplate = ({ title, content, contentComponent}) => {
   )
 }
 
-AboutPageTemplate.propTypes = {
+WorkProjectTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
   contentComponent: PropTypes.func,
 }
 
-const AboutPage = ({data}) => {
+const WorkProjectPage = ({data}) => {
   const { markdownRemark: post } = data
   return (
     <Layout>
-      <AboutPageTemplate
+      <WorkProjectTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
         content={post.html}
@@ -48,14 +42,14 @@ const AboutPage = ({data}) => {
   )
 }
 
-AboutPage.propTypes = {
+WorkProjectPage.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-export default AboutPage
+export default WorkProjectPage
 
-export const aboutPageQuery = graphql`
-  query AboutPage($id: String!) {
+export const workProjectPageQuery = graphql`
+  query WorkProjectPage($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html
       frontmatter {

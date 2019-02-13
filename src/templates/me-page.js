@@ -5,41 +5,43 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import Transition from '../components/Transition'
 
-export const AboutPageTemplate = ({ title, content, contentComponent}) => {
+export const MePageTemplate = ({ title, content, contentComponent}) => {
   const PageContent = contentComponent || Content
 
   return (
     <section className="section section--gradient">
-      <div className="page-title">{title}</div>
       <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              <Transition enter={['fade']}>
-                <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                  {title}
-                </h2>
-                <PageContent className="content" content={content} />
-              </Transition>
-            </div>
+        <div className="row">
+          <div className="col-8">
+            <div className="page-title">{title}</div>
+            <Transition enter={['fade']}>
+              <PageContent className="blurb" content={content} />
+              <div className="footer"> 
+                <ul>
+                  <li>hello@byangelayang.com</li>
+                  <li>+61 466-348-238</li>
+                  <li>@mueslibyangela</li>
+                </ul>
+              </div>
+            </Transition>
           </div>
-        </div>
+        </div> 
       </div>
     </section>
   )
 }
 
-AboutPageTemplate.propTypes = {
+MePageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
   contentComponent: PropTypes.func,
 }
 
-const AboutPage = ({data}) => {
+const MePage = ({data}) => {
   const { markdownRemark: post } = data
   return (
     <Layout>
-      <AboutPageTemplate
+      <MePageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
         content={post.html}
@@ -48,14 +50,14 @@ const AboutPage = ({data}) => {
   )
 }
 
-AboutPage.propTypes = {
+MePage.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-export default AboutPage
+export default MePage
 
-export const aboutPageQuery = graphql`
-  query AboutPage($id: String!) {
+export const mePageQuery = graphql`
+  query MePage($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html
       frontmatter {

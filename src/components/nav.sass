@@ -1,0 +1,139 @@
+nav
+	transition: 0.3s width ease
+	&:not(.is-open)
+		width: 70px
+	.container
+		padding: 64px
+	.navbar-burger
+		background-color: white
+		left: 0
+		padding: 8px
+		position: fixed
+		width: 64px
+		height: 64px
+		top: 0
+		span
+			background-color: black
+			display: block
+			width: 24px
+			height: 3px
+			position: absolute
+			&.open.top
+				top: 30px
+				width: 12px
+				transform: translateX(20px)
+				transition: 0.3s transform ease
+			&.open.bottom
+				bottom: 30px
+				transform: translateX(20px)
+				transition: 0.3s transform ease 0.1s
+			&.close.top
+				left: 0
+				margin: auto
+				top: 0
+				right: 0
+				bottom: 0
+				width: 12px
+				transition: 0.3s transform ease 0.1s  
+				transform: rotate(-45deg) translateX(100px)
+			&.close.bottom
+				left: 0
+				margin: auto
+				top: 0
+				right: 0
+				bottom: 0
+				transition: 0.3s transform ease
+				transform: rotate(45deg) translateX(-100px)
+	.nav-menu
+		list-style: none
+		.highlight
+			background: black
+			content: ''
+			height: 48px
+			left: 0
+			position: absolute
+			top: 0
+			width: 8px
+			&.active
+				transition: 0.3s transform ease
+		.nav-menu-item
+			cursor: default
+			display: list-item
+			font-size: 20px
+			font-weight: bold
+			margin: 64px 0
+			padding: 12px
+			width: 80px
+			&:focus
+				outline: 0
+	.nav-submenu
+		font-weight: 600
+		margin-left: 50%
+		.highlight
+			background-color: black
+			height: 8px
+			margin-left: -48px
+			position: absolute
+			top: 0
+			width: 8px
+			&.active
+				transition: 0.3s transform ease
+		.nav-submenu-item
+			cursor: default
+			display: list-item
+			margin-bottom: 16px
+			&:focus
+				outline: 0
+	&.is-open
+		.navbar-burger
+			.top.open, .bottom.open
+				transform: translateX(-100px)
+			.close.top
+				transform: rotate(-45deg) translateX(6px)
+			.close.bottom
+				transform: rotate(45deg) translateX(0)
+
+		/* Animation Options. */
+		.nav-submenu
+			.nav-submenu-item
+				opacity: 0
+				transform: translateX(-8px)
+			@for $i from 1 to 10
+				&.animate
+					.nav-submenu-item:nth-child(#{$i})
+						animation-delay: $i * 0.1s
+						animation-duration: 0.5s
+			&.show
+				.nav-submenu-item
+					animation-name: FADE-IN
+					animation-timing-function: ease
+					animation-fill-mode: forwards
+			&.hide
+				.nav-submenu-item
+					animation-fill-mode: backwards
+	&:not(.is-open)
+		.nav-menu, .nav-submenu
+			animation: 0.2s FADE-OUT ease forwards
+
+@keyframes FADE-IN
+	0%
+		opacity: 0
+		transform: translateX(-8px)
+	100%
+		opacity: 1
+		transform: translateX(0px)
+
+@keyframes FADE-OUT
+	0%
+		opacity: 1
+	99%
+		opacity: 0
+	100%
+		opacity: 0
+		display: none
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+
+.transition-group
+	&.enter
+		/* Enter animations. */
+		&.fade
+			opacity: 0
+			animation: 0.4s FADE forwards ease
+
+	&.exit
+		/* Exit animations. */
+		&.fade
+			animation: 0.4s FADE reverse ease
+
+@keyframes FADE
+	0%
+		opacity: 0
+	100%
+		opacity: 1

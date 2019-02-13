@@ -1,13 +1,7 @@
 @import "~bulma/sass/utilities/initial-variables"
-
-// Config vars
-// Kalidi logo brand color: #FD461E
-$kaldi-red: #D64000
-$kaldi-red-invert: #fff
-
-$primary: $kaldi-red
-$primary-invert: $kaldi-red-invert
-$body-color: #333
+// @import "bulma/sass/grid/columns.sass"
+@import nav.sass
+@import transitions.sass
 
 .navbar .navbar-menu
   box-shadow:none !important
@@ -27,30 +21,109 @@ $body-color: #333
     margin-bottom: 1.5rem
     margin-top: 0
 
-.navbar
-  display: none !important
+.corners
+  font-weight: 700
+  text-align: right
+  .corner
+    position: fixed
+  .top-left
+    left: 24px
+  .top-right
+    transform: rotate(-90deg)
+    transform-origin: bottom right
+    top: 24px
+    right: 24px
+  .bottom-right
+    bottom: 24px
+    right: 24px
+  .bottom-left
+    font-size: 36px
+    bottom: 24px
+    left: 24px
 
 body
-  background-image: url('/img/under_construction.JPG')
-  background-position: center
-  background-size: 150%
-  height: 100vh
+  font-family: 'Lato', sans-serif
+  font-size: 14px
+  line-height: 24px
 
-// Helper Classes
-.full-width-image-container
-  width: 100vw
-  height: 400px
-  position: relative
-  left: 50%
-  right: 50%
-  margin: 5em -50vw
-  background-size: cover
-  background-position: bottom
-  display: flex
-  justify-content: center
-  align-items: center
+.blurb
+  font-size: 24px
+  line-height: 36px
+
+.footer
+  position: absolute
+  bottom: 0
+  left: 64px
+
+ul
+  padding: 0
+  li
+    list-style: none
+
+
+a:link, a:active, a:visited
+  text-decoration: none
+  color: inherit
+  font-weight: bold
 
 .margin-top-0
   margin-top: 0 !important
 
-@import "~bulma"
+.split-container
+  display: flex
+  width: 200%
+  .main
+    position: relative
+    min-height: calc(100vh - 24px)
+    & > div, > section
+      padding: 64px
+    .page-title
+      font-size: 48px
+      font-weight: 900
+      position: absolute
+      right: calc(100% + 40px)
+      text-align: right
+      top: 80px
+      transform: rotate(-90deg)
+      transform-origin: right
+
+/* Responsive Layout */
+/* For mobile phones: */
+[class*="col-"]
+  width: 100%
+
+[class*="off-"]
+  margin-left: unset
+
+/* For desktop: */
+@media only screen and (min-width: 768px) 
+  .split-container
+    width: 100%
+  .col-1 
+    width: 8.33%
+  .col-2 
+    width: 16.66%
+  .col-3 
+    width: 25%
+  .col-4 
+    width: 33.33%
+  .col-5 
+    width: 41.66%
+  .col-6 
+    width: 50%
+  .col-7 
+    width: 58.33%
+  .col-8 
+    width: 66.66%
+  .col-9 
+    width: 75%
+  .col-10 
+    width: 83.33%
+  .col-11 
+    width: 91.66%
+  .col-12 
+    width: 100%
+  .off-1
+    margin-left: 8.33%
+  .off-2
+    margin-left: 8.33%
