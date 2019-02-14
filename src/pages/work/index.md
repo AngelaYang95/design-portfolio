@@ -2,15 +2,15 @@
 templateKey: work-page
 title: Work
 works:
-  - description: Fake news
-    id: '1'
-    image: /img/products-grid2.jpg
-    name: Testing
+  - description: A brand identity for the laziest nut farm about.
+    id: '0'
+    image: /img/chemex.jpg
+    name: The Lazy Squirrel
   - description: |-
       Illustration about odd things
       and strange thoughts.
     id: '1'
-    image: /img/safari-pinned-tab.svg
+    image: /img/me.jpg
     name: Musings
 ---
 
