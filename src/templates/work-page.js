@@ -88,6 +88,7 @@ export const workPageQuery = graphql`
                 ...GatsbyImageSharpFluid
               }
             }
+            id
           }
         }
       }
