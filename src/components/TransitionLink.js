@@ -15,12 +15,31 @@ const TransitionLink = class extends React.Component {
   constructor(props) {
     super(props)
     this.goToPage = this.goToPage.bind(this)
+    this.handleHover = this.handleHover.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleHover() {
+    let {focusOnHover, onHover} = this.props
+    if(!focusOnHover) {
+      return
+    }
+    if(typeof onHover === 'function') {
+      onHover()
+    }
+    this.goToPage()
+  }
+
+  handleClick() {
+    let {onClick} = this.props
+    if(typeof onClick === 'function') {
+      onClick()
+    }
+    this.goToPage()
   }
 
   goToPage() {
-    let { to, setTransition, transition, timeout, onHover } = this.props
-
-    if(onHover)
+    let { to, setTransition, transition, timeout } = this.props
 
     if (typeof setTransition !== 'function') {
       return
@@ -63,8 +82,8 @@ const TransitionLink = class extends React.Component {
       <div
         className={className}
         data-to={to}
-        onMouseOver={!onClick ? this.goToPage : null}
-        onClick={onClick ? this.goToPage : null}
+        onMouseOver={this.handleHover}
+        onClick={this.handleClick}
         role="link"
         tabIndex="0"
       >
@@ -78,13 +97,17 @@ TransitionLink.defaultProps = {
   duration: 0,
   to: '',
   timeout: null,
-  onClick: false,
+  onClick: () => {},
+  onHover: () => {},
+  focusOnHover: true,
 }
 
 TransitionLink.propTypes = {
   duration: PropTypes.number,
   to: PropTypes.string,
-  onClick: PropTypes.boolean,
+  onClick: PropTypes.func,
+  onHover: PropTypes.func,
+  focusOnHover: PropTypes.boolean,
 }
 
 /* Wrap our link in a consumer and pass down context as props. */

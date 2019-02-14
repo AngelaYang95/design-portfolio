@@ -24,7 +24,7 @@ export const WorkPageTemplate = ({
             return (
               <div className="row" key={i}>
                 <div className={`col-8 ${i % 2 == 0 ? '' : 'off-2'}`}>
-                  <TransitionLink to="/me" onClick="true">
+                  <TransitionLink to="/me" focusOnHover={false}>
                     <Image fluid={!!work.image.childImageSharp
                               ? work.image.childImageSharp.fluid
                               : work.image} alt="Jellyfish" />

@@ -16,6 +16,5 @@ works:
     id: '2'
     image: /img/products-grid3.jpg
     name: Mother Tongue
-  - {}
 ---
 

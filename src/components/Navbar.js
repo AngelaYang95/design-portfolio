@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'gatsby-image'
 import Transition from '../components/Transition'
 import TransitionLink from '../components/TransitionLink'
 import { TransitionConsumer } from '../components/TransitionContext'
@@ -120,7 +121,7 @@ const Navbar = class extends React.Component {
     if (path.split('/')[1] !== 'work') {
       return (
         <ol id="navSubMenu" className="nav-submenu animate">
-          <img className="nav-submenu-item" src="/img/me.jpg" height="150px" />
+          <img className="nav-submenu-item" src="/img/avatar_thumbnail.jpg" width="200px"/>
         </ol>
       )
     }
@@ -130,15 +131,21 @@ const Navbar = class extends React.Component {
         <TransitionLink
           className="nav-submenu-item"
           to="/work/cycle-recycle-club"
+          onClick={this.toggleNav}
         >
           Cycle Recycle Club
         </TransitionLink>
-        <TransitionLink className="nav-submenu-item" to="/work/musings">
+        <TransitionLink 
+          className="nav-submenu-item" 
+          to="/work/musings"
+          onClick={this.toggleNav}
+        >
           Musings
         </TransitionLink>
         <TransitionLink
           className="nav-submenu-item"
           to="/work/cycle-recycle-club"
+          onClick={this.toggleNav}
         >
           Lazy Squirrel
         </TransitionLink>
@@ -171,10 +178,10 @@ const Navbar = class extends React.Component {
             <Transition onExit={this.handleExit}>
               <span className="highlight" />
             </Transition>
-            <TransitionLink className="nav-menu-item" to="/me">
+            <TransitionLink className="nav-menu-item" to="/me" onClick={this.toggleNav}>
               Me
             </TransitionLink>
-            <TransitionLink className="nav-menu-item" to="/work">
+            <TransitionLink className="nav-menu-item" to="/work" onClick={this.toggleNav}>
               Work
             </TransitionLink>
           </ol>

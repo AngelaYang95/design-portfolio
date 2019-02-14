@@ -2,6 +2,7 @@
 // @import "bulma/sass/grid/columns.sass"
 @import nav.sass
 @import work.sass
+@import me.sass
 @import transitions.sass
 
 .navbar .navbar-menu
@@ -58,15 +59,6 @@ h5
   line-height: 14px
   font-weight: 400
 
-.blurb
-  font-size: 24px
-  line-height: 36px
-
-.footer
-  position: absolute
-  bottom: 0
-  left: 64px
-
 ul
   padding: 0
   li
@@ -82,6 +74,9 @@ a:link, a:active, a:visited
 
 .split-container
   display: flex
+  height: 100vh
+  overflow-y: auto
+  position: fixed
   width: 200%
   .main
     position: relative

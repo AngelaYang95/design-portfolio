@@ -15,25 +15,21 @@ export const MePageTemplate = ({
   const PageContent = contentComponent || Content
 
   return (
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="row">
-          <div className="col-8">
-            <div className="page-title">{title}</div>
-            <Transition enter={['fade']}>
-              <PageContent className="blurb" content={blurb} />
-              <div className="footer">
-                <ul>
-                  <li>{contact.email}</li>
-                  <li>{contact.mobile}</li>
-                  <li>@mueslibyangela</li>
-                </ul>
-              </div>
-            </Transition>
+    <div className="row me-page">
+      <div className="col-8">
+        <div className="page-title">{title}</div>
+        <Transition enter={['fade']}>
+          <PageContent className="blurb" content={blurb} />
+          <div className="contact">
+            <ul>
+              <li>{contact.email}</li>
+              <li>{contact.mobile}</li>
+              <li>@mueslibyangela</li>
+            </ul>
           </div>
-        </div>
+        </Transition>
       </div>
-    </section>
+    </div>
   )
 }
 
