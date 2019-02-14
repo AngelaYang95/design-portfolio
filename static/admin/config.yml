@@ -23,11 +23,11 @@ collections:
     label: "Pages"
     files:
       - file: "src/pages/me/index.md"
-        label: "me"
+        label: "Me"
         name: "me"
         fields:
           - {label: "TemplateKey", name: "templateKey", widget: "hidden", default: "me-page"}
-          - {label: "Blurb", name: "blurb", widget: "hidden", default: "work-page"}
+          - {label: "Blurb", name: "blurb", widget: "text", default: "work-page"}
           - {label: "Contact", name: "contact", widget: "object", fields: [{label: "Email", name: "email", widget: "string"}, {label: "Mobile", name: "mobile", widget: "string"}]}
       - file: "src/pages/work/index.md"
         label: "Work"

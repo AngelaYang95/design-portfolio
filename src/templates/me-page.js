@@ -5,7 +5,13 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import Transition from '../components/Transition'
 
-export const MePageTemplate = ({ title, content, contentComponent }) => {
+export const MePageTemplate = ({ 
+  title, 
+  blurb,
+  contact,
+  content, 
+  contentComponent 
+}) => {
   const PageContent = contentComponent || Content
 
   return (
@@ -18,8 +24,8 @@ export const MePageTemplate = ({ title, content, contentComponent }) => {
               <PageContent className="blurb" content={content} />
               <div className="footer">
                 <ul>
-                  <li>hello@byangelayang.com</li>
-                  <li>+61 466-348-238</li>
+                  <li>{contact.email}</li>
+                  <li>{contact.mobile}</li>
                   <li>@mueslibyangela</li>
                 </ul>
               </div>
@@ -44,6 +50,8 @@ const MePage = ({ data }) => {
       <MePageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
+        blurb={post.frontmatter.blurb}
+        contact={post.frontmatter.contact}
         content={post.html}
       />
     </Layout>
@@ -62,6 +70,11 @@ export const mePageQuery = graphql`
       html
       frontmatter {
         title
+        blurb
+        contact {
+          phone
+          mobile
+        }
       }
     }
   }
