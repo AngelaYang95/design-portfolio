@@ -83,7 +83,6 @@ export const workPageQuery = graphql`
         title
         works {
           image {
-            description
             id
             childImageSharp {
               fluid(maxWidth: 2048, quality: 100) {

@@ -7,7 +7,6 @@ import Transition from '../components/Transition'
 
 export const MePageTemplate = ({ 
   title, 
-  blurb,
   contact,
   content, 
   contentComponent 
@@ -50,7 +49,6 @@ const MePage = ({ data }) => {
       <MePageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
-        blurb={post.frontmatter.blurb}
         contact={post.frontmatter.contact}
         content={post.html}
       />
@@ -70,9 +68,8 @@ export const mePageQuery = graphql`
       html
       frontmatter {
         title
-        blurb
         contact {
-          phone
+          email
           mobile
         }
       }
