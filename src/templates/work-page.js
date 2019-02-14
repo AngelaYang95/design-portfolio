@@ -14,34 +14,27 @@ export const WorkPageTemplate = ({
   const PageContent = contentComponent || Content
 
   return (
-    <section className="section section--gradient">
+    <section className="section section--gradient work">
       <div className="page-title">{title}</div>
       <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              {works.map((work, i) => {
-                return (
-                  <div className="column">
-                    <div
-                      className="col-3"
-                      key={i}
-                      alt=""
-                      style={{
-                        height: '100px',
-                        width: '100px',
-                        backgroundImage: `url(${
-                          !!work.image.childImageSharp
-                            ? work.image.childImageSharp.fluid.src
-                            : work.image
-                        })`,
-                      }}
-                    />
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+        <div className="section">
+          {works.map((work, i) => {
+            return (
+              <div className="row" key={i}>
+                <div className={`col-8 ${i % 2 == 0 ? '' : 'off-2'}`}>
+                  <img alt="" width="100%"
+                    src={`${!!work.image.childImageSharp
+                          ? work.image.childImageSharp.fluid.src
+                          : work.image}`}/>
+                </div>
+                <div className="col-4 details">
+                  <h2>{work.id}</h2>
+                  <h4>{work.name}</h4>
+                  <h5>{work.description}</h5>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -82,15 +75,16 @@ export const workPageQuery = graphql`
       frontmatter {
         title
         works {
+          id
           image {
-            id
             childImageSharp {
               fluid(maxWidth: 2048, quality: 100) {
                 ...GatsbyImageSharpFluid
               }
             }
-            name
           }
+          name
+          description
         }
       }
     }

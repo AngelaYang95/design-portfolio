@@ -1,6 +1,7 @@
 @import "~bulma/sass/utilities/initial-variables"
 // @import "bulma/sass/grid/columns.sass"
 @import nav.sass
+@import work.sass
 @import transitions.sass
 
 .navbar .navbar-menu
@@ -41,10 +42,21 @@
     bottom: 24px
     left: 24px
 
+/* Type Things */
 body
   font-family: 'Lato', sans-serif
   font-size: 14px
   line-height: 24px
+
+h2
+  font-weight: 300
+  font-size: 36px
+  font-family: 'Optima', sans-serif
+  
+h5
+  font-size: 12px
+  line-height: 14px
+  font-weight: 400
 
 .blurb
   font-size: 24px
@@ -89,6 +101,9 @@ a:link, a:active, a:visited
 
 /* Responsive Layout */
 /* For mobile phones: */
+.row
+  display: flex
+
 [class*="col-"]
   width: 100%
 
@@ -126,4 +141,4 @@ a:link, a:active, a:visited
   .off-1
     margin-left: 8.33%
   .off-2
-    margin-left: 8.33%
+    margin-left: 16.66%

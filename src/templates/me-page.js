@@ -7,6 +7,7 @@ import Transition from '../components/Transition'
 
 export const MePageTemplate = ({ 
   title, 
+  blurb,
   contact,
   content, 
   contentComponent 
@@ -20,7 +21,7 @@ export const MePageTemplate = ({
           <div className="col-8">
             <div className="page-title">{title}</div>
             <Transition enter={['fade']}>
-              <PageContent className="blurb" content={content} />
+              <PageContent className="blurb" content={blurb} />
               <div className="footer">
                 <ul>
                   <li>{contact.email}</li>
@@ -38,6 +39,7 @@ export const MePageTemplate = ({
 
 MePageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
+  blurb: PropTypes.string,
   content: PropTypes.string,
   contentComponent: PropTypes.func,
 }
@@ -49,6 +51,7 @@ const MePage = ({ data }) => {
       <MePageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
+        blurb={post.frontmatter.blurb}
         contact={post.frontmatter.contact}
         content={post.html}
       />
@@ -68,6 +71,7 @@ export const mePageQuery = graphql`
       html
       frontmatter {
         title
+        blurb
         contact {
           email
           mobile
