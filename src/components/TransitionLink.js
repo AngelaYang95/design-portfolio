@@ -14,11 +14,13 @@ import {
 const TransitionLink = class extends React.Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
+    this.goToPage = this.goToPage.bind(this)
   }
 
-  handleClick() {
-    let { to, setTransition, transition, timeout } = this.props
+  goToPage() {
+    let { to, setTransition, transition, timeout, onHover } = this.props
+
+    if(onHover)
 
     if (typeof setTransition !== 'function') {
       return
@@ -50,7 +52,7 @@ const TransitionLink = class extends React.Component {
   }
 
   render() {
-    let { to, className } = this.props
+    let { to, className, onClick } = this.props
 
     // Only render valid internal links
     if (to === '') {
@@ -61,7 +63,8 @@ const TransitionLink = class extends React.Component {
       <div
         className={className}
         data-to={to}
-        onMouseOver={this.handleClick}
+        onMouseOver={!onClick ? this.goToPage : null}
+        onClick={onClick ? this.goToPage : null}
         role="link"
         tabIndex="0"
       >
@@ -75,11 +78,13 @@ TransitionLink.defaultProps = {
   duration: 0,
   to: '',
   timeout: null,
+  onClick: false,
 }
 
 TransitionLink.propTypes = {
   duration: PropTypes.number,
   to: PropTypes.string,
+  onClick: PropTypes.boolean,
 }
 
 /* Wrap our link in a consumer and pass down context as props. */
