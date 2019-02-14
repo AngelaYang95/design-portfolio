@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import Transition from '../components/Transition'
 
-export const AboutPageTemplate = ({ title, content, contentComponent}) => {
+export const AboutPageTemplate = ({ title, content, contentComponent }) => {
   const PageContent = contentComponent || Content
 
   return (
@@ -35,7 +35,7 @@ AboutPageTemplate.propTypes = {
   contentComponent: PropTypes.func,
 }
 
-const AboutPage = ({data}) => {
+const AboutPage = ({ data }) => {
   const { markdownRemark: post } = data
   return (
     <Layout>

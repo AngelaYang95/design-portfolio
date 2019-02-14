@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import Transition from '../components/Transition'
 
-export const MePageTemplate = ({ title, content, contentComponent}) => {
+export const MePageTemplate = ({ title, content, contentComponent }) => {
   const PageContent = contentComponent || Content
 
   return (
@@ -16,7 +16,7 @@ export const MePageTemplate = ({ title, content, contentComponent}) => {
             <div className="page-title">{title}</div>
             <Transition enter={['fade']}>
               <PageContent className="blurb" content={content} />
-              <div className="footer"> 
+              <div className="footer">
                 <ul>
                   <li>hello@byangelayang.com</li>
                   <li>+61 466-348-238</li>
@@ -25,7 +25,7 @@ export const MePageTemplate = ({ title, content, contentComponent}) => {
               </div>
             </Transition>
           </div>
-        </div> 
+        </div>
       </div>
     </section>
   )
@@ -37,7 +37,7 @@ MePageTemplate.propTypes = {
   contentComponent: PropTypes.func,
 }
 
-const MePage = ({data}) => {
+const MePage = ({ data }) => {
   const { markdownRemark: post } = data
   return (
     <Layout>

@@ -22,6 +22,13 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
+      - file: "src/pages/work/index.md"
+        label: "Work"
+        name: "work"
+        fields:
+          - {label: "TemplateKey", name: "templateKey", widget: "hidden", default: "work-page"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Works", name: "works", widget: list, fields: [{label: Image, name: image, widget: image}, {label: Id, name: id, widget: number}, {label: Name, name: name, widget: string}, {label: Description, name: description, widget: text}]}
       - file: "src/pages/about/index.md"
         label: "About"
         name: "about"

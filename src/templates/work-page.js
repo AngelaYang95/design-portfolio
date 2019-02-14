@@ -5,7 +5,12 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import Transition from '../components/Transition'
 
-export const WorkPageTemplate = ({ title, content, contentComponent}) => {
+export const WorkPageTemplate = ({
+  title,
+  works,
+  content,
+  contentComponent,
+}) => {
   const PageContent = contentComponent || Content
 
   return (
@@ -15,7 +20,26 @@ export const WorkPageTemplate = ({ title, content, contentComponent}) => {
         <div className="columns">
           <div className="column is-10 is-offset-1">
             <div className="section">
-              WORK WORK WORK
+              {works.map((work, i) => {
+                return (
+                  <div className="column">
+                    <div
+                      className="col-3"
+                      key={i}
+                      alt=""
+                      style={{
+                        height: '100px',
+                        width: '100px',
+                        backgroundImage: `url(${
+                          !!work.image.childImageSharp
+                            ? work.image.childImageSharp.fluid.src
+                            : work.image
+                        })`,
+                      }}
+                    />
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>
@@ -26,17 +50,19 @@ export const WorkPageTemplate = ({ title, content, contentComponent}) => {
 
 WorkPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
+  works: PropTypes.array,
   content: PropTypes.string,
   contentComponent: PropTypes.func,
 }
 
-const WorkPage = ({data}) => {
+const WorkPage = ({ data }) => {
   const { markdownRemark: post } = data
   return (
     <Layout>
       <WorkPageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
+        works={post.frontmatter.works}
         content={post.html}
       />
     </Layout>
@@ -55,6 +81,15 @@ export const workPageQuery = graphql`
       html
       frontmatter {
         title
+        works {
+          image {
+            childImageSharp {
+              fluid(maxWidth: 2048, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
       }
     }
   }

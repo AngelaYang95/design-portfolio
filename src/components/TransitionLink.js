@@ -1,7 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { navigate } from 'gatsby'
-import {TransitionConsumer, transitions} from '../components/TransitionContext'
+import {
+  TransitionConsumer,
+  transitions,
+} from '../components/TransitionContext'
 
 /*
  * TransitionLink is a HOC component that triggers
@@ -10,55 +13,62 @@ import {TransitionConsumer, transitions} from '../components/TransitionContext'
  */
 const TransitionLink = class extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick() {
-    let {to, setTransition, transition, timeout} = this.props
+    let { to, setTransition, transition, timeout } = this.props
 
-    if(typeof setTransition !== 'function') {
+    if (typeof setTransition !== 'function') {
       return
     }
-    if(to === window.location.pathname) {
+    if (to === window.location.pathname) {
       return
     }
 
     // Setup a timeout before triggering exiting transitions.
-    if(timeout) {
+    if (timeout) {
       clearTimeout(timeout)
     }
 
     timeout = setTimeout(() => {
-      navigate(to, { 
+      navigate(to, {
         state: {
           navOpen: transition.navOpen,
           prevPath: transition.path,
-        } 
+        },
       })
     }, transitions.exit.duration)
 
     setTransition({
-      type: transitions.exit.type, 
-      path: to, 
+      type: transitions.exit.type,
+      path: to,
       duration: transitions.exit.duration,
       timeout: timeout,
     })
   }
- 
+
   render() {
-    let {to, className} = this.props
+    let { to, className } = this.props
 
     // Only render valid internal links
-    if(to === '') {
+    if (to === '') {
       return null
     }
 
     return (
-      <div className={className} data-to={to} onMouseOver={this.handleClick} role="link" tabIndex="0">
+      <div
+        className={className}
+        data-to={to}
+        onMouseOver={this.handleClick}
+        role="link"
+        tabIndex="0"
+      >
         {this.props.children}
       </div>
-  )}
+    )
+  }
 }
 
 TransitionLink.defaultProps = {
@@ -73,11 +83,15 @@ TransitionLink.propTypes = {
 }
 
 /* Wrap our link in a consumer and pass down context as props. */
-const ConnectedTransitionLink = (props) => {
+const ConnectedTransitionLink = props => {
   return (
     <TransitionConsumer>
       {({ transition, setTransition }) => (
-        <TransitionLink {...props} setTransition={setTransition} transition={transition}/>
+        <TransitionLink
+          {...props}
+          setTransition={setTransition}
+          transition={transition}
+        />
       )}
     </TransitionConsumer>
   )
