@@ -26,5 +26,19 @@ works:
     image: /img/flavor_wheel.jpg
     link: /work
     name: Ocean Change
+  - description: Another fake project but yeah whatever here you go
+    id: '7'
+    image: /img/products-full-width.jpg
+    link: /work
+    name: Portfolio
+  - description: >-
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      Lorem Ipsum has been the industry's standard dummy text ever since the
+      1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book. It has survived not only five centuries
+    id: '8'
+    image: /img/products-grid1.jpg
+    link: /work
+    name: Coffee Beans Project
 ---
 
