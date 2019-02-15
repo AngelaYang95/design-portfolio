@@ -16,5 +16,15 @@ works:
     id: '2'
     image: /img/products-grid3.jpg
     name: Mother Tongue
+  - description: A brand identity for a lazy sleepy nut farm.
+    id: '3'
+    image: /img/jumbotron.jpg
+    link: /work
+    name: The Lazy Squirrel Club
+  - description: Data Visualisation Exhibit
+    id: '5'
+    image: /img/flavor_wheel.jpg
+    link: /work
+    name: Ocean Change
 ---
 
