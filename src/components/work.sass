@@ -2,9 +2,6 @@
 	.row
 		margin: 16px auto
 	.details
-		margin-left: 16px
-		display: flex
-		flex-direction: column
 		h2
 			margin: auto 0 0
 		h4
@@ -13,3 +10,10 @@
 			margin: 0
 	*:focus
 		outline: 0
+	.item
+		margin: 8px
+		.thumbnail
+			height: 200px
+	&.expand
+		transition: 0.5s width ease
+		width: 100%

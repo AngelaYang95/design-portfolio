@@ -6,38 +6,41 @@ import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
 import Transition from '../components/Transition'
 import TransitionLink from '../components/TransitionLink'
+import { TransitionConsumer } from '../components/TransitionContext'
 
 export const WorkPageTemplate = ({
+  transition,
   title,
   works,
   content,
   contentComponent,
 }) => {
   const PageContent = contentComponent || Content
-
+  console.log('transition is ', transition)
   return (
-    <section className="section section--gradient work">
+    <section className={`work ${transition.navOpen ? '' : 'expand'}`}>
       <div className="page-title">{title}</div>
       <div className="container">
         <div className="section">
-          {works.map((work, i) => {
-            return (
-              <div className="row" key={i}>
-                <div className={`col-8 ${i % 2 == 0 ? '' : 'off-2'}`}>
+          <div className="row">
+            {works.map((work, i) => {
+              return (
+                <div className="col-3 item" key={i}>
                   <TransitionLink to="/me" focusOnHover={false}>
-                    <Image fluid={!!work.image.childImageSharp
+                    <Image backgroundColor="black" 
+                        className="thumbnail"
+                        fluid={!!work.image.childImageSharp
                               ? work.image.childImageSharp.fluid
                               : work.image} alt="Jellyfish" />
+                    <div className="details">
+                      <h4>{`${work.id} ${work.name}`}</h4>
+                      <h5>{work.description}</h5>
+                    </div>
                   </TransitionLink>
                 </div>
-                <div className="col-4 details">
-                  <h2>{work.id}</h2>
-                  <h4>{work.name}</h4>
-                  <h5>{work.description}</h5>
-                </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>
@@ -51,16 +54,22 @@ WorkPageTemplate.propTypes = {
   contentComponent: PropTypes.func,
 }
 
+/* Wrap our page in a consumer nav state context as props. */
 const WorkPage = ({ data }) => {
   const { markdownRemark: post } = data
   return (
     <Layout>
-      <WorkPageTemplate
-        contentComponent={HTMLContent}
-        title={post.frontmatter.title}
-        works={post.frontmatter.works}
-        content={post.html}
-      />
+      <TransitionConsumer>
+      {({ transition }) => (
+        <WorkPageTemplate
+          transition={transition}
+          contentComponent={HTMLContent}
+          title={post.frontmatter.title}
+          works={post.frontmatter.works}
+          content={post.html}
+        />
+      )}
+      </TransitionConsumer>
     </Layout>
   )
 }

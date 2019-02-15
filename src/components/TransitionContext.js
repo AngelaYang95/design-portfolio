@@ -45,6 +45,7 @@ export const TransitionProvider = class extends React.Component {
     }
   }
 
+  // Initialise dynamic state / browser stuff at runtime
   componentDidMount() {
     let newTransition = {
       path: window.location.pathname,
